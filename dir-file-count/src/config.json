@@ -1,0 +1,12 @@
+{
+    "dir_location": [
+        {
+            "path": "/path/to/local/test/dir1/"
+        },
+        {
+            "path": "/path/to/local/test/dir2/"
+        }
+    ],
+
+    "output_file_name": "file_structure.json"
+}
