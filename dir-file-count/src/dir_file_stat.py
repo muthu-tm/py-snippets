@@ -58,42 +58,23 @@ def update_dir_count(dir_json, sub_dir_json):
             dir_json[file_extension] = ext
 
 
-
-def get_sub_dir_stat(project_location, number_of_files, number_of_dir):
-    sub_dir_json = {}
-
-    for root, dirs, files in os.walk(project_location, topdown=True):
-        for file in files:
-            path = os.path.join(root, file)
-            file_extension = get_file_extension(file)
-            number_of_files = number_of_files + 1
-            update_counts(file_extension, path, sub_dir_json)
-
-        for dir in dirs:
-            path = os.path.join(root, dir)
-            number_of_dir = number_of_dir + 1
-            get_sub_dir_stat(path, number_of_files, number_of_dir)
-
-    return sub_dir_json
-
-
 def main():
     global number_of_files, number_of_dir
 
     for input in dir_location:
         dir_json = {}
         for root, dirs, files in os.walk(input["path"], topdown=True):
+            sub_dir_json = {}
             for file in files:
                 path = os.path.join(root, file)
                 number_of_files = number_of_files + 1
                 file_extension = get_file_extension(file)
-                update_counts(file_extension, path, dir_json)
+                update_counts(file_extension, path, sub_dir_json)
 
             for dir in dirs:
                 number_of_dir = number_of_dir + 1
-                path = os.path.join(root, dir)
-                sub_dir_stat = get_sub_dir_stat(path, number_of_files, number_of_dir)
-                update_dir_count(dir_json, sub_dir_stat)
+
+            update_dir_count(dir_json, sub_dir_json)
 
 
         write_mapping_json_file(input["path"], dir_json)
