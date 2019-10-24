@@ -1,0 +1,15 @@
+{
+    "dir_location": [
+        {
+            "path": "/path/to/py-snippets/img-convertor/test/"
+        }
+    ],
+
+    "from_extension": [
+        "jpg",
+        "jpeg",
+        "tiff",
+        "tif"
+    ],
+    "to_img_extension": "png"
+}
