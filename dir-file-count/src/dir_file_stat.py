@@ -1,7 +1,6 @@
 import os
 import time
 import json
-from datetime import datetime
 
 start_time = time.time()
 
